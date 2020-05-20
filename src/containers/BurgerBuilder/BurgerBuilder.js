@@ -18,7 +18,7 @@ const INGREDIENT_PRICES = {
 }
 
 class BurgerBuilder extends Component {
-  _isMounted = false;
+
 
   state = {
     ingredients: null,
@@ -37,9 +37,10 @@ class BurgerBuilder extends Component {
 
     axios.get('https://react-my-burger-f3966.firebaseio.com/ingredients.json')
       .then(response => {
-        if (this._isMounted) {
-          this.setState({ ingredients: response.data })
-        }
+        console.log(response.data)
+
+        this.setState({ ingredients: response.data })
+
       })
 
       .catch(error => {
@@ -48,9 +49,6 @@ class BurgerBuilder extends Component {
 
   }
 
-  UNSAFE_componentWillUnmount() {
-    this._isMounted = false;
-  }
 
   updatePurchaseState(ingredients) {
 
